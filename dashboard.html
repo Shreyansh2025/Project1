@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Dynamic Blog</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/Project1/">Home</a>
+        <a href="/logout">Logout</a>
+      </nav>
+      <h1>Welcome, [User]</h1>
+    </header>
+
+    <main>
+      <h1>Dashboard</h1>
+
+      <section>
+        <h2>Create a New Post</h2>
+        <form method="POST">
+          <label>Title:</label>
+          <input type="text" name="title" required />
+          <label>Content:</label>
+          <textarea name="content" rows="5" required></textarea>
+          <button type="submit">Create Post</button>
+        </form>
+      </section>
+      <!-- <section class="user-posts">
+        <article>
+          <p>Post content preview...</p>
+          <button>Edit</button>
+          <button>Delete</button>
+        </article>
+      </section> -->
+    </main>
+    <footer>
+      <p>&copy; 2025 Dynamic Blog</p>
+    </footer>
+  </body>
+</html>

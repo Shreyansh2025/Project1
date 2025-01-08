@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login/Register - Dynamic Blog</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/Project1">Home</a>
+        <a href="#" onclick="showForm('login')">Login</a>
+        <a href="#" onclick="showForm('register')">Register</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="form-container">
+        <form id="login-form" method="POST" action="/login" class="active">
+          <h1>Login</h1>
+          <label for="email">Email:</label>
+          <input type="email" id="login-email" name="email" required />
+          <label for="password">Password:</label>
+          <input type="password" id="login-password" name="password" required />
+          <button type="submit">Login</button>
+        </form>
+
+        <form id="register-form" method="POST" action="/register">
+          <h1>Register</h1>
+          <label for="username">Username:</label>
+          <input type="text" id="register-username" name="username" required />
+          <label for="email">Email:</label>
+          <input type="email" id="register-email" name="email" required />
+          <label for="password">Password:</label>
+          <input type="password" id="register-password" name="password" required />
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Dynamic Blog</p>
+    </footer>
+
+    <script>
+      function showForm(formType) {
+        // Hide both forms
+        document.getElementById('login-form').classList.remove('active');
+        document.getElementById('register-form').classList.remove('active');
+
+        // Show the selected form
+        if (formType === 'login') {
+          document.getElementById('login-form').classList.add('active');
+        } else {
+          document.getElementById('register-form').classList.add('active');
+        }
+      }
+    </script>
+  </body>
+</html>

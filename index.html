@@ -1,15 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Blog - Home</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header>
-        <ul><li>
-            home
-        </li></ul>
+      <nav>
+        <a href="/Project1/">Home</a>
+        <a href="/Project1/login.html">Login</a>
+        <a href="/Project1/register.html">Register</a>
+        <a href="/Project1/dashboard.html">Dashboard</a>
+      </nav>
     </header>
-</body>
+
+    <main>
+      <h1>Welcome to Dynamic Blog</h1>
+      <h2>Recent Posts</h2>
+
+      <div class="post">
+        <section class="blog-posts">
+          <article>
+            <h2>Blog Post Title</h2>
+            <p>Brief description of the blog post...
+              
+            </p>
+            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
+            <button onclick="toggleContent(this)">Read More</button>
+            <div class="hidden-content">
+                <p>Full blog content here...
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque architecto, iure perspiciatis aliquam, ratione fugit labore debitis necessitatibus, veniam saepe earum quod corporis impedit dolorem. Quos aperiam harum maxime laboriosam blanditiis assumenda reiciendis dignissimos! Sequi dicta quaerat voluptates praesentium. Quibusdam, quia voluptatem veniam laborum, explicabo unde dolores ratione pariatur, a id nihil eveniet ipsa!
+                </p>
+            </div>
+        </article>
+        </section>
+        <section class="blog-posts">
+          <article>
+            <h2>Blog Post Title</h2>
+            <p>Brief description of the blog post...</p>
+            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
+            <button>Read More</button>
+          </article>
+        </section>
+        <section class="blog-posts">
+          <article>
+            <h2>Blog Post Title</h2>
+            <p>Brief description of the blog post...</p>
+            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
+            <button>Read More</button>
+          </article>
+        </section>
+        <section class="blog-posts">
+          <article>
+            <h2>Blog Post Title</h2>
+            <p>Brief description of the blog post...</p>
+            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
+            <button>Read More</button>
+          </article>
+        </section>
+        <section class="blog-posts">
+          <article>
+            <h2>Blog Post Title</h2>
+            <p>Brief description of the blog post...</p>
+            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
+            <button>Read More</button>
+          </article>
+        </section>
+        <section class="blog-posts">
+          <article>
+            <h2>Blog Post Title</h2>
+            <p>Brief description of the blog post...</p>
+            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
+            <button>Read More</button>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Dynamic Blog</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
 </html>
