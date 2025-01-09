@@ -4,15 +4,162 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Dynamic Blog</title>
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #003366;
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+
+      header nav {
+        display: flex;
+        gap: 15px;
+      }
+
+      header nav a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      header nav a:hover {
+        color: #ffcc00;
+      }
+
+      main {
+        flex-grow: 1;
+        padding: 20px;
+      }
+
+      main h1 {
+        font-size: 2rem;
+        color: #003366;
+        margin-bottom: 20px;
+      }
+
+      section {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #003366;
+      }
+
+      section form label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      section form input,
+      section form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border 0.3s ease;
+      }
+
+      section form input:focus,
+      section form textarea:focus {
+        border-color: #003366;
+        outline: none;
+      }
+
+      section form button {
+        background-color: #003366;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      section form button:hover {
+        background-color: #002244;
+      }
+
+      .user-posts article {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .user-posts article p {
+        margin-bottom: 10px;
+      }
+
+      .user-posts article button {
+        background-color: #4d5fff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-right: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .user-posts article button:hover {
+        background-color: #0014cc;
+      }
+
+      footer {
+        background-color: #003366;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <header>
+      <h1>Welcome, <span id="username-placeholder">[User]</span></h1>
       <nav>
         <a href="/Project1/">Home</a>
         <a href="/logout">Logout</a>
       </nav>
-      <h1>Welcome, [User]</h1>
     </header>
 
     <main>
@@ -20,24 +167,137 @@
 
       <section>
         <h2>Create a New Post</h2>
-        <form method="POST">
-          <label>Title:</label>
-          <input type="text" name="title" required />
-          <label>Content:</label>
-          <textarea name="content" rows="5" required></textarea>
+        <form id="post-form">
+          <label for="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Enter post title"
+            required
+          />
+          <label for="author">Author:</label>
+          <input
+            type="text"
+            id="author"
+            placeholder="Enter author name"
+            required
+          />
+          <label for="content">Content:</label>
+          <textarea
+            id="content"
+            name="content"
+            rows="5"
+            placeholder="Enter post content"
+            required
+          ></textarea>
           <button type="submit">Create Post</button>
         </form>
       </section>
-      <!-- <section class="user-posts">
-        <article>
-          <p>Post content preview...</p>
-          <button>Edit</button>
-          <button>Delete</button>
-        </article>
-      </section> -->
+
+      <section class="user-posts">
+        <h2>Your Posts</h2>
+        <div id="posts-container"></div>
+      </section>
     </main>
+
     <footer>
-      <p>&copy; 2025 Dynamic Blog</p>
+      <p>&copy; 2025 Dynamic Blog | All rights reserved.</p>
     </footer>
+
+    <script>
+      const postForm = document.getElementById("post-form");
+      const postsContainer = document.getElementById("posts-container");
+
+      postForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const title = document.getElementById("title").value;
+        const author = document.getElementById("author").value;
+        const content = document.getElementById("content").value;
+
+        const newPost = document.createElement("article");
+        newPost.innerHTML = `
+    <h3>${title}</h3>
+    <p>${author}</p>
+    <p>${content}</p>
+    <button class="edit-btn">Edit</button>
+    <button class="delete-btn">Delete</button>
+    <button class="save-btn" style="display: none;">Save</button> <!-- Hidden save button -->
+  `;
+
+        newPost.querySelector(".delete-btn").addEventListener("click", () => {
+          postsContainer.removeChild(newPost);
+        });
+
+        newPost.querySelector(".edit-btn").addEventListener("click", () => {
+          const postTitle = newPost.querySelector("h3");
+          const postAuthor = newPost.querySelector("p:nth-of-type(1)");
+          const postContent = newPost.querySelector("p:nth-of-type(2)");
+          const saveButton = newPost.querySelector(".save-btn");
+
+          postTitle.contentEditable = true;
+          postAuthor.contentEditable = true;
+          postContent.contentEditable = true;
+
+          newPost.querySelector(".edit-btn").textContent = "Cancel"; // Change button text to Cancel
+          saveButton.style.display = "inline"; // Show the save button
+
+          // On Save button click, update the post and hide the save button
+          saveButton.addEventListener("click", () => {
+            postTitle.contentEditable = false;
+            postAuthor.contentEditable = false;
+            postContent.contentEditable = false;
+
+            // Save the updated content to localStorage
+            localStorage.setItem("title", postTitle.textContent);
+            localStorage.setItem("author", postAuthor.textContent);
+            localStorage.setItem("content", postContent.textContent);
+
+            newPost.querySelector(".edit-btn").textContent = "Edit"; // Change the button back to Edit
+            saveButton.style.display = "none"; // Hide save button after saving
+          });
+        });
+
+        postsContainer.appendChild(newPost);
+        postForm.reset();
+      });
+
+      window.addEventListener("DOMContentLoaded", function () {
+        const username = localStorage.getItem("username");
+        if (username) {
+          document.getElementById("username-placeholder").textContent =
+            username;
+        }
+      });
+      
+      const posts_container = document.getElementById("posts_container");
+
+      posts_container.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const content = document.getElementById("content").value;
+
+    // Create an object for the new post
+    const newPost = {
+      title: title,
+      author: author,
+      content: content,
+      date: new Date().toLocaleDateString(),
+    };
+
+    const existingPosts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    existingPosts.push(newPost);
+
+    localStorage.setItem("posts", JSON.stringify(existingPosts));
+
+    // postForm.reset();
+
+    window.location.href = "/Project1/index.html";
+  });
+    </script>
   </body>
 </html>

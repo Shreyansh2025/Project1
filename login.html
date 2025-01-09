@@ -3,59 +3,192 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login/Register - Dynamic Blog</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login - Dynamic Blog</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: #003366;
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+
+      header nav {
+        display: flex;
+        gap: 15px;
+      }
+
+      header nav a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      header nav a:hover {
+        color: #ffcc00;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        padding: 20px;
+      }
+
+      .form-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .form-container h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #003366;
+        font-weight: 600;
+      }
+
+      .form-container label {
+        display: block;
+        text-align: left;
+        font-weight: 600;
+        margin: 10px 0 5px;
+        color: #555;
+      }
+
+      .form-container input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border 0.3s ease;
+      }
+
+      .form-container input:focus {
+        border-color: #003366;
+        outline: none;
+      }
+
+      .form-container button {
+        background-color: #003366;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        font-weight: 600;
+      }
+
+      .form-container button:hover {
+        background-color: #002244;
+      }
+
+      .form-container p {
+        margin-top: 15px;
+        font-size: 0.9rem;
+      }
+
+      .form-container p a {
+        color: #003366;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .form-container p a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        background-color: #003366;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+        width: 100%;
+        bottom: 0;
+        font-size: 0.9rem;
+      }
+
+      footer a {
+        color: #ffcc00;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
     <header>
+      <h1>Dynamic Blog</h1>
       <nav>
         <a href="/Project1">Home</a>
-        <a href="#" onclick="showForm('login')">Login</a>
-        <a href="#" onclick="showForm('register')">Register</a>
+        <a href="register.html">Register</a>
       </nav>
     </header>
 
     <main>
       <div class="form-container">
-        <form id="login-form" method="POST" action="/login" class="active">
+        <form id="login-form" method="POST" action="/Project1/login.html">
           <h1>Login</h1>
           <label for="email">Email:</label>
-          <input type="email" id="login-email" name="email" required />
+          <input
+            type="email"
+            id="login-email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
           <label for="password">Password:</label>
-          <input type="password" id="login-password" name="password" required />
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
           <button type="submit">Login</button>
-        </form>
-
-        <form id="register-form" method="POST" action="/register">
-          <h1>Register</h1>
-          <label for="username">Username:</label>
-          <input type="text" id="register-username" name="username" required />
-          <label for="email">Email:</label>
-          <input type="email" id="register-email" name="email" required />
-          <label for="password">Password:</label>
-          <input type="password" id="register-password" name="password" required />
-          <button type="submit">Register</button>
+          <p>Don't have an account? <a href="register.html">Register</a></p>
         </form>
       </div>
     </main>
 
     <footer>
-      <p>&copy; 2025 Dynamic Blog</p>
+      <p>&copy; 2025 Dynamic Blog | All rights reserved | <a href="#">Privacy Policy</a></p>
     </footer>
-
-    <script>
-      function showForm(formType) {
-        // Hide both forms
-        document.getElementById('login-form').classList.remove('active');
-        document.getElementById('register-form').classList.remove('active');
-
-        // Show the selected form
-        if (formType === 'login') {
-          document.getElementById('login-form').classList.add('active');
-        } else {
-          document.getElementById('register-form').classList.add('active');
-        }
-      }
-    </script>
   </body>
 </html>

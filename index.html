@@ -24,63 +24,41 @@
         <section class="blog-posts">
           <article>
             <h2>Blog Post Title</h2>
-            <p>Brief description of the blog post...
-              
-            </p>
+            <p id="content-box">Brief description of the blog post...</p>
             <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
-            <button onclick="toggleContent(this)">Read More</button>
             <div class="hidden-content">
-                <p>Full blog content here...
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque architecto, iure perspiciatis aliquam, ratione fugit labore debitis necessitatibus, veniam saepe earum quod corporis impedit dolorem. Quos aperiam harum maxime laboriosam blanditiis assumenda reiciendis dignissimos! Sequi dicta quaerat voluptates praesentium. Quibusdam, quia voluptatem veniam laborum, explicabo unde dolores ratione pariatur, a id nihil eveniet ipsa!
-                </p>
+              <p>
+                Full blog content here... Lorem ipsum dolor, sit amet
+                consectetur adipisicing elit. Magni, temporibus itaque sit culpa
+                nostrum error adipisci dolorum iste quos sunt cumque id. Veniam
+                recusandae possimus, amet dolore delectus odit doloremque!
+              </p>
             </div>
-        </article>
-        </section>
-        <section class="blog-posts">
-          <article>
-            <h2>Blog Post Title</h2>
-            <p>Brief description of the blog post...</p>
-            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
-            <button>Read More</button>
+            <button class="toggle-btn" onclick="toggleContent(this)">
+              Read More
+            </button>
           </article>
         </section>
         <section class="blog-posts">
           <article>
-            <h2>Blog Post Title</h2>
-            <p>Brief description of the blog post...</p>
-            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
-            <button>Read More</button>
-          </article>
-        </section>
-        <section class="blog-posts">
-          <article>
-            <h2>Blog Post Title</h2>
-            <p>Brief description of the blog post...</p>
-            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
-            <button>Read More</button>
-          </article>
-        </section>
-        <section class="blog-posts">
-          <article>
-            <h2>Blog Post Title</h2>
-            <p>Brief description of the blog post...</p>
-            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
-            <button>Read More</button>
-          </article>
-        </section>
-        <section class="blog-posts">
-          <article>
-            <h2>Blog Post Title</h2>
-            <p>Brief description of the blog post...</p>
-            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
-            <button>Read More</button>
+            <h2 id="title1">[title]</h2>
+            <p id="content-box">Brief description of the blog post...</p>
+            <p><small id="author1">Author: [author] | Date: Jan 1, 2025</small></p>
+            <div class="hidden-content">
+              <p id="content1">[content]</p>
+            </div>
+            <button class="toggle-btn" onclick="toggleContent(this)">
+              Read More
+            </button>
           </article>
         </section>
       </div>
     </main>
-
     <footer>
-      <p>&copy; 2025 Dynamic Blog</p>
+      <p>
+        &copy; 2025 Dynamic Blog | All rights reserved |
+        <a href="#">Privacy Policy</a>
+      </p>
     </footer>
     <script src="script.js"></script>
   </body>

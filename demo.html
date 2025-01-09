@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Scroll</title>
+    <style>
+        .scrollable-box {
+            width: 300px;
+            height: 200px;
+            background-color: #f4f4f4;
+            overflow: scroll; /* Initially scrollable */
+            border: 1px solid #ddd;
+        }
+
+        .content {
+            height: 500px; /* Extra height to show scrolling effect */
+        }
+
+        .toggle-btn {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scrollable-box" id="scrollableBox">
+        <div class="content">
+            <p>This is a scrollable content box. Scroll will be removed when toggled.</p>
+        </div>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleScroll()">Toggle Scroll</button>
+
+    <script>
+        function toggleScroll() {
+            const box = document.getElementById('scrollableBox');
+            
+            // Toggle the overflow property between scroll and visible
+            if (box.style.overflow === 'scroll') {
+                box.style.overflow = 'visible'; // Remove scroll
+            } else {
+                box.style.overflow = 'scroll'; // Add scroll
+            }
+        }
+    </script>
+
+</body>
+</html>
