@@ -8,8 +8,9 @@
   </head>
   <body>
     <header>
-      <nav>
-        <a href="/Project1/">Home</a>
+      <h1>Dynamic Blog</h1>
+      <nav aria-label="Main navigation">
+        <a href="/Project1">Home</a>
         <a href="/Project1/login.html">Login</a>
         <a href="/Project1/register.html">Register</a>
         <a href="/Project1/dashboard.html">Dashboard</a>
@@ -17,43 +18,85 @@
     </header>
 
     <main>
-      <h1>Welcome to Dynamic Blog</h1>
-      <h2>Recent Posts</h2>
+      <section class="welcome">
+        <h2>Welcome to Dynamic Blog</h2>
+        <p>
+          Explore insightful articles, share your thoughts, and connect with
+          like-minded individuals. Sign up today to start creating and managing
+          your own blog posts.
+        </p>
+        <a href="/Project1/register.html" class="cta">Get Started</a>
+      </section>
 
-      <div class="post">
-        <section class="blog-posts">
-          <article>
-            <h2>Blog Post Title</h2>
-            <p id="content-box">Brief description of the blog post...</p>
-            <p><small>Author: John Doe | Date: Jan 1, 2025</small></p>
-            <div class="hidden-content">
-              <p>
-                Full blog content here... Lorem ipsum dolor, sit amet
-                consectetur adipisicing elit. Magni, temporibus itaque sit culpa
-                nostrum error adipisci dolorum iste quos sunt cumque id. Veniam
-                recusandae possimus, amet dolore delectus odit doloremque!
+      <h2>Recent Blog Posts</h2>
+      <div class="recent-posts">
+        
+        <div class="post">
+          <h3>How to Start Blogging</h3>
+          <p>
+            Blogging is a great way to express yourself and share knowledge.
+            Learn the basics to get started!
+          </p>
+          <div class="hidden-content">
+            <p>
+                Blogging is a great way to express yourself and share knowledge.
+                Learn the basics to get started!
               </p>
-            </div>
-            <button class="toggle-btn" onclick="toggleContent(this)">
-              Read More
-            </button>
-          </article>
-        </section>
-        <section class="blog-posts">
-          <article>
-            <h2 id="title1">[title]</h2>
-            <p id="content-box">Brief description of the blog post...</p>
-            <p><small id="author1">Author: [author] | Date: Jan 1, 2025</small></p>
-            <div class="hidden-content">
-              <p id="content1">[content]</p>
-            </div>
-            <button class="toggle-btn" onclick="toggleContent(this)">
-              Read More
-            </button>
-          </article>
-        </section>
+          </div>
+          <button class="read-more">Read More</button>
+
+        </div>
+        <div class="post">
+          <h3>Top 10 Web Development Trends</h3>
+          <p>
+            Stay updated with the latest trends in web development and take your
+            skills to the next level.
+          </p>
+          <div class="hidden-content">
+            <p>
+                Stay updated with the latest trends in web development and take your
+                skills to the next level.
+              </p>
+          </div>
+          <button class="read-more">Read More</button>
+
+        </div>
+        <div class="post">
+          <h3>Why You Should Learn HTML & CSS</h3>
+          <p>
+            HTML and CSS are the foundation of web development. Discover why
+            these skills are essential.
+          </p>
+          <div class="hidden-content">
+            <p>
+                HTML and CSS are the foundation of web development. Discover why
+                these skills are essential.
+              </p>
+          </div>
+          <button class="read-more">Read More</button>
+
+        </div>
+        
+        <div class="post">
+          <h3>Why You Should Learn HTML & CSS</h3>
+          <p>
+            HTML and CSS are the foundation of web development. Discover why
+            these skills are essential.
+          </p>
+          <div class="hidden-content">
+            <p>
+                HTML and CSS are the foundation of web development. Discover why
+                these skills are essential.
+              </p>
+          </div>
+          <button class="read-more">Read More</button>
+
+        </div>
       </div>
+
+      <section class="recent-posts"></section>
     </main>
+
     <footer>
       <p>
         &copy; 2025 Dynamic Blog | All rights reserved |

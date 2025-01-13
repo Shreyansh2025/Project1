@@ -1,27 +1,39 @@
+// document.addEventListener("DOMContentLoaded", () => {
+//   const buttons = document.querySelectorAll(".read-more");
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const toggleButtons = document.querySelectorAll(".toggle-btn");
+//   buttons.forEach(button => {
+//       button.addEventListener("click", () => {
+//           const post = button.closest(".post");
+//           const extraContent = post.querySelector(".extra-content");
 
-        toggleButtons.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const content = btn.previousElementSibling; // Select hidden content
-            const isVisible = content.style.display === "block";
+//           // Toggle visibility
+//           if (extraContent.classList.contains("hidden-content")) {
+//               extraContent.classList.remove("hidden-content");
+//               extraContent.classList.add("visible-content");
+//               button.textContent = "Read Less";
+//           } else {
+//               extraContent.classList.remove("visible-content");
+//               extraContent.classList.add("hidden-content");
+//               button.textContent = "Read More";
+//           }
+//       });
+//   });
+// });
 
-            content.style.display = isVisible ? "none" : "block";
-            btn.textContent = isVisible ? "Read More" : "Read Less";
-          });
-        });
-      });
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".read-more");
 
-      window.addEventListener("DOMContentLoaded", function () {
-        const title = localStorage.getItem("title");
-        const author = localStorage.getItem("author");
-        const content = localStorage.getItem("content");
-      
-        if (title && author && content) {
-          document.getElementById("title1").textContent = title;
-          document.getElementById("author1").textContent = author;
-          document.getElementById("content1").textContent = content;
-        }
-      });
-      
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const hiddenContent = button.previousElementSibling;
+
+      if (hiddenContent && hiddenContent.classList.contains("hidden-content")) {
+        hiddenContent.classList.toggle("active");
+
+        button.textContent = hiddenContent.classList.contains("active")
+          ? "Read Less"
+          : "Read More";
+      }
+    });
+  });
+});

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Dynamic Blog</title>
+    <title>Dynamic Blog</title>
     <style>
       * {
         margin: 0;
@@ -60,7 +60,31 @@
         color: #003366;
         margin-bottom: 20px;
       }
+      .dashboard-stats {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
 
+      .stat-card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        flex: 1;
+      }
+
+      .stat-card h3 {
+        font-size: 1.2rem;
+        color: #495057;
+      }
+
+      .stat-card p {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #007bff;
+      }
       section {
         background-color: #fff;
         padding: 20px;
@@ -164,7 +188,20 @@
 
     <main>
       <h1>Dashboard</h1>
-
+      <section class="dashboard-stats">
+        <div class="stat-card">
+          <h3>Total Posts</h3>
+          <p id="total-posts">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Comments</h3>
+          <p id="total-comments">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Likes</h3>
+          <p id="total-likes">0</p>
+        </div>
+      </section>
       <section>
         <h2>Create a New Post</h2>
         <form id="post-form">
@@ -208,6 +245,38 @@
     <script>
       const postForm = document.getElementById("post-form");
       const postsContainer = document.getElementById("posts-container");
+      const totalPostsElement = document.getElementById("total-posts");
+      const totalCommentsElement = document.getElementById("total-comments");
+      const totalLikesElement = document.getElementById("total-likes");
+
+      function loadPosts() {
+        const posts = JSON.parse(localStorage.getItem("posts")) || [];
+        totalPostsElement.textContent = posts.length;
+
+        let totalComments = 0;
+        let totalLikes = 0;
+
+        postsContainer.innerHTML = ""; // Clear posts before reloading
+
+        posts.forEach((post, index) => {
+          totalComments += post.comments || 0;
+          totalLikes += post.likes || 0;
+
+          // Add the post to the dashboard
+          const postElement = document.createElement("article");
+          postElement.innerHTML = `
+      <h3>${post.title}</h3>
+      <p>${post.author}</p>
+      <p>${post.content}</p>
+      <button class="edit-btn" data-index="${index}">Edit</button>
+      <button class="delete-btn" data-index="${index}">Delete</button>
+    `;
+          postsContainer.appendChild(postElement);
+        });
+
+        totalCommentsElement.textContent = totalComments;
+        totalLikesElement.textContent = totalLikes;
+      }
 
       postForm.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -216,88 +285,62 @@
         const author = document.getElementById("author").value;
         const content = document.getElementById("content").value;
 
-        const newPost = document.createElement("article");
-        newPost.innerHTML = `
-    <h3>${title}</h3>
-    <p>${author}</p>
-    <p>${content}</p>
-    <button class="edit-btn">Edit</button>
-    <button class="delete-btn">Delete</button>
-    <button class="save-btn" style="display: none;">Save</button> <!-- Hidden save button -->
-  `;
+        const newPost = {
+          title: title,
+          author: author,
+          content: content,
+          comments: 0,
+          likes: 0,
+        };
 
-        newPost.querySelector(".delete-btn").addEventListener("click", () => {
-          postsContainer.removeChild(newPost);
-        });
+        // Save post to localStorage
+        let posts = JSON.parse(localStorage.getItem("posts")) || [];
+        posts.push(newPost);
+        localStorage.setItem("posts", JSON.stringify(posts));
 
-        newPost.querySelector(".edit-btn").addEventListener("click", () => {
-          const postTitle = newPost.querySelector("h3");
-          const postAuthor = newPost.querySelector("p:nth-of-type(1)");
-          const postContent = newPost.querySelector("p:nth-of-type(2)");
-          const saveButton = newPost.querySelector(".save-btn");
-
-          postTitle.contentEditable = true;
-          postAuthor.contentEditable = true;
-          postContent.contentEditable = true;
-
-          newPost.querySelector(".edit-btn").textContent = "Cancel"; // Change button text to Cancel
-          saveButton.style.display = "inline"; // Show the save button
-
-          // On Save button click, update the post and hide the save button
-          saveButton.addEventListener("click", () => {
-            postTitle.contentEditable = false;
-            postAuthor.contentEditable = false;
-            postContent.contentEditable = false;
-
-            // Save the updated content to localStorage
-            localStorage.setItem("title", postTitle.textContent);
-            localStorage.setItem("author", postAuthor.textContent);
-            localStorage.setItem("content", postContent.textContent);
-
-            newPost.querySelector(".edit-btn").textContent = "Edit"; // Change the button back to Edit
-            saveButton.style.display = "none"; // Hide save button after saving
-          });
-        });
-
-        postsContainer.appendChild(newPost);
+        // Create and append post
+        loadPosts();
         postForm.reset();
       });
 
+      // Handle edit and delete actions
+      postsContainer.addEventListener("click", function (e) {
+        const posts = JSON.parse(localStorage.getItem("posts")) || [];
+        const index = e.target.getAttribute("data-index");
+
+        if (e.target.classList.contains("edit-btn")) {
+          // Edit functionality: pre-fill the form with the post data
+          const post = posts[index];
+          document.getElementById("title").value = post.title;
+          document.getElementById("author").value = post.author;
+          document.getElementById("content").value = post.content;
+
+          // Remove the post for re-editing after submission
+          posts.splice(index, 1);
+          localStorage.setItem("posts", JSON.stringify(posts));
+          loadPosts();
+        }
+
+        if (e.target.classList.contains("delete-btn")) {
+          // Delete functionality
+          posts.splice(index, 1);
+          localStorage.setItem("posts", JSON.stringify(posts));
+
+          // Reload posts and update stats
+          loadPosts();
+        }
+      });
+
+      // Load posts on page load
       window.addEventListener("DOMContentLoaded", function () {
         const username = localStorage.getItem("username");
         if (username) {
           document.getElementById("username-placeholder").textContent =
             username;
         }
+
+        loadPosts();
       });
-      
-      const posts_container = document.getElementById("posts_container");
-
-      posts_container.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const content = document.getElementById("content").value;
-
-    // Create an object for the new post
-    const newPost = {
-      title: title,
-      author: author,
-      content: content,
-      date: new Date().toLocaleDateString(),
-    };
-
-    const existingPosts = JSON.parse(localStorage.getItem("posts")) || [];
-
-    existingPosts.push(newPost);
-
-    localStorage.setItem("posts", JSON.stringify(existingPosts));
-
-    // postForm.reset();
-
-    window.location.href = "/Project1/index.html";
-  });
     </script>
   </body>
 </html>

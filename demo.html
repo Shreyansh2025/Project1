@@ -3,52 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toggle Scroll</title>
-    <style>
-        .scrollable-box {
-            width: 300px;
-            height: 200px;
-            background-color: #f4f4f4;
-            overflow: scroll; /* Initially scrollable */
-            border: 1px solid #ddd;
-        }
-
-        .content {
-            height: 500px; /* Extra height to show scrolling effect */
-        }
-
-        .toggle-btn {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    <title>Blog Site</title>
+    <link rel="stylesheet" href="demostyle.css">
 </head>
 <body>
+    <header>
+        <div class="logo">BlogSite</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="demologin.html">Login</a>
+            <a href="demoregister.html">Register</a>
+        </nav>
+    </header>
 
-    <div class="scrollable-box" id="scrollableBox">
-        <div class="content">
-            <p>This is a scrollable content box. Scroll will be removed when toggled.</p>
+    <section class="home-page">
+        <div class="post-list">
+            <div class="post-card">
+                <h2>Blog Post Title</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+            <!-- More posts can be added here -->
         </div>
-    </div>
+    </section>
 
-    <button class="toggle-btn" onclick="toggleScroll()">Toggle Scroll</button>
+    <footer>
+        <p>© 2025 BlogSite. All Rights Reserved.</p>
+    </footer>
 
-    <script>
-        function toggleScroll() {
-            const box = document.getElementById('scrollableBox');
-            
-            // Toggle the overflow property between scroll and visible
-            if (box.style.overflow === 'scroll') {
-                box.style.overflow = 'visible'; // Remove scroll
-            } else {
-                box.style.overflow = 'scroll'; // Add scroll
-            }
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>

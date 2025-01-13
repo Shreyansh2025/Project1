@@ -1,16 +1,29 @@
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(to right, #5f74ff, #7badfe);
+  color: #333;
+}
+
 header {
   background-color: #003366;
   color: #fff;
   padding: 15px 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -37,85 +50,105 @@ header nav a:hover {
 
 main {
   padding: 20px;
-}
-.post {
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #19191932;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+  font-family: cursive;
 }
 .hidden-content {
   display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
 }
-::-webkit-scrollbar {
-  display: none;
+
+.hidden-content.active {
+  display: block;
+  max-height: 500px; /* Adjust as needed */
+  opacity: 1;
 }
-.blog-posts {
-  width: 320px;
+
+
+
+
+.visible-content {
+  display: block;
+}
+.welcome {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.recent-posts {
+  margin-top: 20px;
+}
+
+.post {
   margin-bottom: 20px;
-  overflow-y: scroll;
-  background-color: #f4f4f4;
-  transition: height 0.3s ease-out;
-  padding: 20px;
   border: 1px solid #ddd;
+  padding: 15px;
   border-radius: 5px;
-  height: 180px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h1,
-h2,
-h3 {
-  color: #333;
+.post h3 {
+  margin-top: 0;
 }
 
-/* .form-container form.active {
-  display: block;
-} */
-
-form {
-  margin: 1rem 0;
-}
-
-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.post button {
-  background: #007bff;
-  color: #fff;
+.read-more {
+  background: #007BFF;
+  color: white;
+  padding: 10px 15px;
   border: none;
-  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-.post button:hover {
+.read-more:hover {
   background: #0056b3;
 }
-button {
-  background: #007bff;
-  color: #fff;
-  border: none;
-  padding: 0.7rem 1.5rem;
-  cursor: pointer;
+
+.welcome,
+.recent-posts,
+footer {
+  margin-top: 30px;
 }
-button:hover {
-  background: #0056b3;
+
+.recent-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+  
+    .welcome .cta {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+.cta:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+} 
+
+@media (max-width: 768px) {
+  header nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .blog-post {
+    padding: 1rem;
+  }
 }
 footer {
+  margin-top: auto;
   background-color: #003366;
   color: white;
   text-align: center;
@@ -134,3 +167,4 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+/*
